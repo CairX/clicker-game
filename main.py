@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont("sans", 16)
 
 area = pygame.Rect(16, 16, 352 - 16, height - 32)
-color = (63, 81, 181)  # (255, 0, 0)
+color = (63, 81, 181)
 clicks = 0
 
 store = Store()
@@ -27,7 +27,6 @@ while True:
             store.event(event)
 
             x, y = event.pos
-            print("down (" + str(x) + ", " + str(y) + ") " + str(event.button))
             if area.collidepoint(x, y):
                 color = (48,63,159)
             else:
@@ -35,7 +34,6 @@ while True:
 
         elif event.type == pygame.MOUSEBUTTONUP:
             x, y = event.pos
-            print("up   (" + str(x) + ", " + str(y) + ")")
             if color == (48,63,159):
                 color = (63, 81, 181)
                 clicks += 1

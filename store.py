@@ -33,8 +33,6 @@ class Store(object):
                     self.scroll -= 16
 
             elif event.button == 5:
-                print(self.scroll + 16 + self.area.height)
-                print(self.surface.get_height())
                 if self.scroll + 16 + self.area.height <= self.surface.get_height():
                     self.scroll += 16
 
@@ -66,7 +64,7 @@ class StoreItem(object):
         self.bank = 0
         self.area = pygame.Rect(x, y, 320, 80)
         self.font = pygame.font.SysFont("sans", 16)
-        self.background = (136,14,79)
+        self.background = (136, 14, 79)
         self.surface = pygame.Surface((self.area.width, self.area.height))
 
     def total_cps(self):
