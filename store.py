@@ -52,7 +52,7 @@ class Store(object):
             self.bank = item.update(delta, self.bank)
 
     def get_total_cps(self):
-        return sum(item.total_cps() for item in self.items)
+        return sum(item.get_total_cps() for item in self.items)
 
 
 class StoreItem(object):
@@ -67,7 +67,7 @@ class StoreItem(object):
         self.background = (136, 14, 79)
         self.surface = pygame.Surface((self.area.width, self.area.height))
 
-    def total_cps(self):
+    def get_total_cps(self):
         return self.cps * self.amount
 
     def buy(self):
@@ -97,7 +97,7 @@ class StoreItem(object):
         self.elapsed += delta
         if self.elapsed >= 1000:
             self.elapsed = 0
-            self.bank += self.total_cps()
+            self.bank += self.get_total_cps()
 
         if self.bank >= 1:
             bank += math.floor(self.bank)
