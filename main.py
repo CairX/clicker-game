@@ -2,6 +2,7 @@ import pygame, sys, math
 from store import Store
 
 pygame.init()
+pygame.display.set_caption("clicker")
 
 width = 352 * 2
 height = 800
