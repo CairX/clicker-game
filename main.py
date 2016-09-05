@@ -8,7 +8,7 @@ height = 800
 
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
-font = pygame.font.SysFont("monospace", 16)
+font = pygame.font.SysFont("sans", 16)
 
 area = pygame.Rect(16, 16, 352 - 16, height - 32)
 color = (63, 81, 181)  # (255, 0, 0)
@@ -49,9 +49,9 @@ while True:
     # screen.fill((0, 0, 0), (0, 0, width, 80))
     # clicks_text = font.render("clicks: " + "{0:.1f}".format(clicks), False, (255, 255, 255))
     # screen.blit(clicks_text, (80, 20))
-    bank_text = font.render("bank: " + str(store.bank), False, (255, 255, 255))
-    screen.blit(bank_text, (80, 40))
-    screen.blit(font.render("cps: " + str(store.get_total_cps()), False, (255, 255, 255)), (80, 60))
+    bank_text = font.render("bank: " + str(store.bank), True, (255, 255, 255))
+    screen.blit(bank_text, (32, 32))
+    screen.blit(font.render("cps: " + "{0:.1f}".format(store.get_total_cps()), True, (255, 255, 255)), (32, 48))
 
     store.draw(screen)
 

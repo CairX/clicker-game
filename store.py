@@ -5,7 +5,7 @@ import pygame
 
 class Store(object):
     def __init__(self):
-        self.bank = 2000
+        self.bank = 200000000000000000
         self.items = []
         self.area = pygame.Rect(352, 0, 352, 800)
         self.scroll = 0
@@ -24,15 +24,14 @@ class Store(object):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 x, y = event.pos
-                # print(str(x) + " :: " + str(y + self.scroll))
                 for item in self.items:
-                    # print(item.area)
-                    # print(item.area.collidepoint(x, y + self.scroll))
                     if item.area.collidepoint(x - self.area.x, y + self.scroll) and item.cost <= self.bank:
                         self.bank -= item.buy()
+
             elif event.button == 4:
                 if self.scroll - 16 >= 0:
                     self.scroll -= 16
+
             elif event.button == 5:
                 print(self.scroll + 16 + self.area.height)
                 print(self.surface.get_height())
@@ -41,31 +40,21 @@ class Store(object):
 
     def draw(self, surface):
         self.surface.fill((238, 238, 238))
-        padding = 16
-        x = padding
-        y = padding
-        # self.surface.scroll(0, 200)
+
+        y = 16
         for item in self.items:
             item.affordable(self.bank)
-            s = item.draw()
-            self.surface.blit(s, (item.area.x, item.area.y))
+            self.surface.blit(item.draw(), (item.area.x, item.area.y))
             y += 96
 
         surface.blit(self.surface, (self.area.x, self.area.y), (0, self.scroll, self.area.width, self.area.height))
 
     def update(self, delta):
-        # try
-        # THIS IS WHAT YOU SHOULD BE FIXING
-        # Sum at every elapsed second the total clicks
-        # if greater then 1 then add it to the bank somehow
         for item in self.items:
             self.bank = item.update(delta, self.bank)
 
     def get_total_cps(self):
-        cps = 0
-        for item in self.items:
-            cps += item.total_cps()
-        return cps
+        return sum(item.total_cps() for item in self.items)
 
 
 class StoreItem(object):
@@ -76,7 +65,7 @@ class StoreItem(object):
         self.elapsed = 0
         self.bank = 0
         self.area = pygame.Rect(x, y, 320, 80)
-        self.font = pygame.font.SysFont("monospace", 16)
+        self.font = pygame.font.SysFont("sans", 16)
         self.background = (136,14,79)
         self.surface = pygame.Surface((self.area.width, self.area.height))
 
