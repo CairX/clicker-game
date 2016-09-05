@@ -86,9 +86,9 @@ class StoreItem(object):
 
     def affordable(self, bank):
         if self.cost <= bank:
-            self.background = (233,30,99)
+            self.background = (233, 30, 99)
         else:
-            self.background = (136,14,79)
+            self.background = (136, 14, 79)
 
     def draw(self):
         self.surface.fill(self.background)

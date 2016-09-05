@@ -1,4 +1,5 @@
-import pygame, sys, math
+import pygame
+import sys
 from clicker import Clicker
 from store import Store
 
