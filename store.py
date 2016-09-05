@@ -36,7 +36,7 @@ class Store(object):
                 if self.scroll + 16 + self.area.height <= self.surface.get_height():
                     self.scroll += 16
 
-    def draw(self, surface):
+    def draw(self):
         self.surface.fill((238, 238, 238))
 
         y = 16
@@ -45,7 +45,13 @@ class Store(object):
             self.surface.blit(item.draw(), (item.area.x, item.area.y))
             y += 96
 
-        surface.blit(self.surface, (self.area.x, self.area.y), (0, self.scroll, self.area.width, self.area.height))
+        return self.surface
+
+    def get_area(self):
+        return 0, self.scroll, self.area.width, self.area.height
+
+    def get_position(self):
+        return self.area.x, self.area.y
 
     def update(self, delta):
         for item in self.items:
