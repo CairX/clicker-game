@@ -5,7 +5,7 @@ import pygame
 
 class Store(object):
     def __init__(self):
-        self.bank = 200000000000000000
+        self.bank = 0
         self.items = []
         self.area = pygame.Rect(352, 0, 352, 800)
         self.scroll = 0
